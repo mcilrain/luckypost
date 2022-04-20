@@ -23,7 +23,7 @@ is intended for luckynet developers, not users (but users are welcome to use
 it if they want).
 
 ## Hello world
-`python -m luckypost en.test authorname "<Hello world!"`
+`python -m luckypost create en.test authorname "<Hello world!"`
 
 The user will then be prompted to enter their passphrase, alternatively it can
 be specified on the command line with the `-p` argument.
