@@ -1933,6 +1933,7 @@ def main():
     def mine(mine_args):
         author_address = mine_args.author_address.strip().lstrip('@')
         hash_type_chrp = mine_args.hash_type
+        print("Mining...")
         queue = mp.Queue()
         processes = []
         for _ in range(mp.cpu_count()):
@@ -1945,12 +1946,15 @@ def main():
             process.start()
             processes.append(process)
         best_power_level = 0
-        while True:
-            pow_extension = queue.get()
-            power_level = get_power_level(author_address, pow_extension)
-            if power_level > best_power_level:
-                best_power_level = power_level
-                print(pow_extension, power_level)
+        try:
+            while True:
+                pow_extension = queue.get()
+                power_level = get_power_level(author_address, pow_extension)
+                if power_level > best_power_level:
+                    best_power_level = power_level
+                    print(pow_extension, power_level)
+        except KeyboardInterrupt:
+            print("Mining stopped by user's request.")
 
     def view(view_args):
         luckypost_str = view_args.luckypost
